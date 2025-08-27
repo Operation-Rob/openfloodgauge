@@ -81,4 +81,4 @@ jobs:
 
           nginx -t
           systemctl reload nginx
-EOF
+          EOF
