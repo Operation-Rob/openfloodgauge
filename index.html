@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenFloodGauge — Live Flood Extent Intelligence (Federated & Open)</title>
+  <meta name="description" content="Live flood extent modeling intelligence delivered as a managed map overlay. Powered by a federated, open SensorThings network." />
+  <meta property="og:title" content="OpenFloodGauge — Live Flood Extent Intelligence" />
+  <meta property="og:description" content="Federated intake. Open standards. Real-time flood-extent overlay." />
+  <meta property="og:image" content="assets/images/app-map.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header border">
+    <div class="container header-grid">
+      <div class="brand">
+        <a href="#" class="brand-link">OpenFloodGauge</a>
+      </div>
+      <nav class="nav">
+        <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#how">How it Works</a></li>
+          <li><a href="#federation">Federated Network</a></li>
+          <li><a href="#standards">Data &amp; Standards</a></li>
+          <li><a href="https://app.openfloodgauge.com">Demo</a></li>
+          <li><a href="https://github.com/Operation-Rob/AFAC25" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a class="txt-impact" href="./partner.html">Support Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="announcement border" role="note">
+    <div class="container">
+      AFAC25 prototype shown here. Public demo available via the Demo link.
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="section border" id="hero">
+      <div class="container grid cols-12">
+        <div class="col span-6 hero-copy">
+          <h1 class="h1">Live flood extent intelligence.</h1>
+          <p class="lead">We ingest water‑level data via a fully federated, open network of flood gauges and deliver a real‑time flood‑extent overlay. You get a single link to add into QGIS, ArcGIS or your operations platform.</p>
+          <div class="cta-row">
+            <a class="btn btn-impact" href="./partner.html" aria-label="I can help with funding, connections, or adoption">I can help — funding · connections · adoption</a>
+            <a class="btn" href="https://app.openfloodgauge.com">View Demo</a>
+            <a class="btn btn-ghost" href="https://github.com/Operation-Rob/AFAC25" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+        <div class="col span-6">
+          <figure class="frame">
+            <img src="assets/images/app-map.png" alt="Monitoring UI map view showing flood gauges" />
+            <figcaption class="caption">AFAC25 monitoring UI (prototype).</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section border" id="about">
+      <div class="container grid cols-12">
+        <div class="col span-6">
+          <h2 class="h2">Why OpenFloodGauge</h2>
+          <ul class="bullets">
+            <li>Open data saves time and money.</li>
+            <li>Open access increases coverage.</li>
+            <li>Open standards make systems work together.</li>
+            <li>Citizen science builds resilience.</li>
+            <li>Fair participation respects local control and context.</li>
+          </ul>
+        </div>
+        <div class="col span-6">
+          <p>Floods move fast. Communities and agencies need timely, reliable data. OpenFloodGauge is a simple, extensible way to measure water height and share it. Anyone can participate—individuals, shires, traditional owners, and national agencies—under one open, interoperable model.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Builds -->
+    <section class="section border" id="builds">
+      <div class="container">
+        <h2 class="h2">What we built</h2>
+        <div class="grid cols-12 images-grid">
+          <figure class="col span-4 frame">
+            <img src="assets/images/sensor-photos-1.png" alt="Prototype sensor device in plastic enclosure" />
+            <figcaption class="caption">Prototype sensor, off‑the‑shelf parts.</figcaption>
+          </figure>
+          <figure class="col span-4 frame">
+            <img src="assets/images/federated-diagram-slide.png" alt="Data flow slide showing FROST SensorThings pipeline" />
+            <figcaption class="caption">Bench test and data flow.</figcaption>
+          </figure>
+          <figure class="col span-4 frame">
+            <img src="assets/images/app-map.png" alt="Map-based dashboard showing devices" />
+            <figcaption class="caption">Monitoring UI (prototype).</figcaption>
+          </figure>
+        </div>
+        <p class="note">Hardware and software are open source. Build your own, or register a gauge you already run.</p>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section border" id="how">
+      <div class="container">
+        <h2 class="h2">How it works</h2>
+        <div class="grid cols-12 cards">
+          <div class="col span-4 card border">
+            <h3 class="h3">1. Ingest (Federated)</h3>
+            <p>Providers post SensorThings‑compliant data to federated endpoints (FROST). Ownership remains local.</p>
+          </div>
+          <div class="col span-4 card border">
+            <h3 class="h3">2. Model (Real‑time)</h3>
+            <p>We process incoming streams and compute live flood‑extent using open methods and transparent quality checks.</p>
+          </div>
+          <div class="col span-4 card border">
+            <h3 class="h3">3. Deliver (Overlay)</h3>
+            <p>We publish a real‑time flood‑extent overlay as a web map layer—drop a single link into ArcGIS, QGIS, or your ops/SOC platform.</p>
+          </div>
+        </div>
+        <p class="mono small"><a href="#standards">View schema &amp; docs →</a></p>
+      </div>
+    </section>
+
+    <!-- Federated network -->
+    <section class="section border" id="federation">
+      <div class="container">
+        <h2 class="h2">A federated model for real‑world governance</h2>
+        <div class="grid cols-12">
+          <div class="col span-7">
+            <p>OpenFloodGauge is a <strong>federation</strong>. Individuals, municipalities, shires, traditional owners, and national agencies can register gauges and stream data. Ownership stays local; access is negotiated and transparent.</p>
+            <ul class="bullets">
+              <li><strong>Local autonomy:</strong> Shires can deploy gauges without waiting for a central body.</li>
+              <li><strong>National scale:</strong> Agencies can expand the network using the same APIs.</li>
+              <li><strong>Traditional owners:</strong> Communities run gauges on Country, retain control, and grant access on agreed terms.</li>
+              <li><strong>Eligibility:</strong> We accept any gauge that is accurate and compliant with OGC SensorThings.</li>
+              <li><strong>Revocable participation:</strong> Providers can pause or revoke feeds; access control is explicit.</li>
+            </ul>
+            <div class="cta-row">
+              <a class="btn" href="#register">Register a Gauge</a>
+              <a class="btn btn-ghost" href="governance.html">Read Governance Notes</a>
+            </div>
+            <p class="mono small">Accuracy is verified using calibration runs and periodic cross‑checks. Providers keep attribution.</p>
+          </div>
+          <div class="col span-5">
+            <figure class="frame">
+              <svg class="diagram" viewBox="0 0 800 520" aria-labelledby="diagramTitle" role="img">
+                <title id="diagramTitle">Federated data flow diagram</title>
+                <style>
+                  .box { fill:#fff; stroke:#000; stroke-width:1; }
+                  .arrow { stroke:#000; stroke-width:1; marker-end:url(#arrowhead); fill:none; }
+                  .label { font: 12px 'Roboto Mono', monospace; }
+                </style>
+                <defs>
+                  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                    <polygon points="0 0, 10 3.5, 0 7" />
+                  </marker>
+                </defs>
+                <rect class="box" x="30" y="30" width="200" height="70" />
+                <text class="label" x="40" y="70">Individuals / Citizen scientists</text>
+                <rect class="box" x="30" y="130" width="200" height="70" />
+                <text class="label" x="40" y="170">Shires & municipalities</text>
+                <rect class="box" x="30" y="230" width="200" height="70" />
+                <text class="label" x="40" y="270">Traditional owners</text>
+
+                <rect class="box" x="300" y="100" width="200" height="130" />
+                <text class="label" x="310" y="130">SensorThings endpoints</text>
+                <text class="label" x="310" y="150">(FROST servers)</text>
+                <text class="label" x="310" y="170">Federated namespace</text>
+
+                <rect class="box" x="580" y="30" width="190" height="70" />
+                <text class="label" x="590" y="70">Communities & public</text>
+                <rect class="box" x="580" y="130" width="190" height="70" />
+                <text class="label" x="590" y="170">Researchers / Educators</text>
+                <rect class="box" x="580" y="230" width="190" height="70" />
+                <text class="label" x="590" y="270">Agencies (DFES, etc.)</text>
+
+                <line class="arrow" x1="230" y1="65" x2="300" y2="120" />
+                <line class="arrow" x1="230" y1="165" x2="300" y2="165" />
+                <line class="arrow" x1="230" y1="265" x2="300" y2="180" />
+
+                <line class="arrow" x1="500" y1="120" x2="580" y2="65" />
+                <line class="arrow" x1="500" y1="165" x2="580" y2="165" />
+                <line class="arrow" x1="500" y1="180" x2="580" y2="265" />
+              </svg>
+              <figcaption class="caption">Federated participation: local control, shared access.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <!-- Governance Notes -->
+    <section class="section border" id="governance">
+      <div class="container">
+        <h2 class="h2">Governance Notes</h2>
+        <p>OpenFloodGauge is federated by design. Providers retain ownership and control of their gauges and data while participating in a shared, standards‑based network. Governance emphasizes local autonomy, consent, and transparent access arrangements.</p>
+        <div class="grid cols-12 cards">
+          <div class="col span-6 card border">
+            <h3 class="h3">Local autonomy</h3>
+            <p>Shires, municipalities, and traditional owner groups may deploy and manage gauges without requiring approval from a central authority. Operational choices (locations, maintenance schedules, calibration practices) remain local.</p>
+          </div>
+          <div class="col span-6 card border">
+            <h3 class="h3">National scale</h3>
+            <p>Regional or national agencies (e.g., DFES) can participate under the same open standards, contributing capacity and coverage while respecting local governance and attribution.</p>
+          </div>
+          <div class="col span-6 card border">
+            <h3 class="h3">Data ownership & access</h3>
+            <p>Data providers retain ownership. Publication terms are explicit and revocable. Access can be public or access‑controlled; terms (including rate limits and redistribution) are disclosed and versioned.</p>
+          </div>
+          <div class="col span-6 card border">
+            <h3 class="h3">Indigenous data governance</h3>
+            <p>Traditional owners set the conditions for collection, access, and reuse of data from gauges on Country. We follow agreed protocols and ensure attribution. Access can be time‑bound or purpose‑limited.</p>
+          </div>
+          <div class="col span-6 card border">
+            <h3 class="h3">Quality & calibration</h3>
+            <p>Providers commit to initial calibration and periodic checks. We provide guidance, test datasets, and cross‑reference against reference peaks and neighbors where available. Data flagged as uncertain is labeled downstream.</p>
+          </div>
+          <div class="col span-6 card border">
+            <h3 class="h3">Eligibility & suspension</h3>
+            <p>Any SensorThings‑compliant, accurate gauge may register. Feeds can be paused by the provider or temporarily suspended for integrity, legal, or safety reasons. All actions are logged and communicated.</p>
+          </div>
+          <div class="col span-6 card border">
+            <h3 class="h3">Transparency</h3>
+            <p>We maintain public change logs, versioned documentation, and a roadmap. Model and overlay version labels accompany delivered products to ensure traceability.</p>
+          </div>
+          <div class="col span-6 card border">
+            <h3 class="h3">Fair access</h3>
+            <p>Open APIs and documentation are publicly available. Where constraints are needed (e.g., rate limits), rules are documented and applied consistently.</p>
+          </div>
+        </div>
+        <p class="mono small">Questions about governance? <a href="mailto:hello@openfloodgauge.com?subject=Governance%20question">Email us</a>.</p>
+      </div>
+    </section>
+
+
+    <!-- Data & Standards -->
+    <section class="section border" id="standards">
+      <div class="container grid cols-12">
+        <div class="col span-6">
+          <h2 class="h2">Standards first</h2>
+          <ul class="bullets">
+            <li>OGC SensorThings API v1.1 (ingest, federation)</li>
+            <li>FROST Server + PostGIS (storage & processing)</li>
+            <li>Live overlay delivery as a standard web map layer</li>
+            <li>CSV export &amp; versioned documentation</li>
+          </ul>
+        </div>
+        <div class="col span-6">
+          <h2 class="h2">Quality &amp; fairness</h2>
+          <ul class="bullets">
+            <li>Calibration guidance &amp; reference checks</li>
+            <li>Transparent change logs</li>
+            <li>Public issue tracking</li>
+            <li>Open license for non‑sensitive datasets</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo (link only) -->
+    <section class="section border" id="demo">
+      <div class="container">
+        <h2 class="h2">See the prototype</h2>
+        <p>The demo shows our monitoring UI and an example of the live flood‑extent overlay. Features will evolve as providers and regions are added.</p>
+        <a class="btn" href="https://app.openfloodgauge.com/" aria-label="Open demo app">Open Demo</a>
+        <p class="mono small"></p>
+      </div>
+    </section>
+
+    
+    <!-- FAQ -->
+    <section class="section border" id="faq">
+      <div class="container">
+        <h2 class="h2">Frequently asked</h2>
+        <div class="faq">
+          <details class="border">
+            <summary>Do I need permission to run a gauge?</summary>
+            <div>
+              <p>You are responsible for complying with local regulations, site access rules, and safety. If you wish to publish your data to the network, follow our registration flow and calibration steps so your stream is clearly identified, attributed, and compatible with the shared schema.</p>
+              <p>If the gauge sits on public land or on Country, obtain consent from the relevant authority or traditional owner group before installation and publication.</p>
+            </div>
+          </details>
+          <details class="border">
+            <summary>What accuracy is required?</summary>
+            <div>
+              <p>We publish sensor recommendations and a calibration guide. In general, acceptable configurations achieve stable zeroing and repeatable readings across typical flow conditions. We also encourage cross‑checks after significant events and when hardware changes.</p>
+              <p>Where accuracy is uncertain, data is flagged and the overlay may down‑weight or exclude the signal until it stabilizes.</p>
+            </div>
+          </details>
+          <details class="border">
+            <summary>Who owns the data?</summary>
+            <div>
+              <p>Providers retain ownership of their data. Publication terms define how the data may be accessed and reused. Attribution is preserved in metadata and, where feasible, end‑user interfaces. Providers may pause or revoke publication at any time.</p>
+            </div>
+          </details>
+          <details class="border">
+            <summary>How is indigenous data governed?</summary>
+            <div>
+              <p>Data from gauges on Country is governed by the conditions set by the relevant traditional owner group. This can include access control, purpose limitations, time‑bounded access, and attribution requirements. We will not publish or redistribute such data outside agreed terms.</p>
+            </div>
+          </details>
+          <details class="border">
+            <summary>Can I use this in production?</summary>
+            <div>
+              <p>Many users rely on our managed overlay for operational awareness. However, it is provided “as is” and should complement—not replace—official warnings and emergency directions. Validate the overlay in your environment and combine it with local knowledge and policies.</p>
+            </div>
+          </details>
+          <details class="border">
+            <summary>How do I integrate the managed overlay?</summary>
+            <div>
+              <p>We issue a customer‑specific overlay URL. In most mapping tools, you add a Tile/WMTS/WMS/GeoJSON layer using the provided link and your token. We support ArcGIS, QGIS, and common SOC platforms. Our team can assist with onboarding and testing.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  
+    <!-- Contact -->
+    <section class="section border" id="contact">
+      <div class="container grid cols-12">
+        <div class="col span-6">
+          <h2 class="h2">Contact</h2>
+          <p>Email us at <a href="mailto:hello@openfloodgauge.com">hello@openfloodgauge.com</a> for partnerships, media, or technical questions.</p>
+        </div>
+        <div class="col span-6">
+          <h3 class="h3">Postal</h3>
+          <p>Perth, Western Australia</p>
+          <h3 class="h3">Media & demos</h3>
+          <p>Request a walkthrough or demo access via <a href="mailto:hello@openfloodgauge.com?subject=Demo%20request">hello@openfloodgauge.com</a>.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer border">
+    <div class="container footer-grid">
+      <div>
+        OpenFloodGauge · © 2025<br/>
+        Perth, Western Australia
+      </div>
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          <li><a href="#docs">Docs</a></li>
+          <li><a href="https://github.com/Operation-Rob/AFAC25" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://app.openfloodgauge.com">Demo</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+      </nav>
+    </div>
+  
+      <div class="container" style="padding-top:12px">
+        <p class="small">Acknowledgement of Country: We acknowledge the Traditional Owners of Country throughout Australia and recognise their continuing connection to land, waters, and community. We pay our respects to Elders past and present. We support self‑determined Indigenous data governance; access and reuse of Indigenous data remain subject to community decision‑making.</p>
+      </div>
+    </footer>
+    
+
+  <script src="script.js"></script>
+</body>
+</html>

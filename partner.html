@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Partner with OpenFloodGauge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header border">
+    <div class="container header-grid">
+      <div class="brand"><a class="brand-link" href="index.html">OpenFloodGauge</a></div>
+    </div>
+  </header>
+  <main class="section border">
+    <div class="container" style="max-width:720px">
+      <h1 class="h1">I can help</h1>
+      <p class="lead">Tell us how you can help scale OpenFloodGauge. Replace the <span class="mono small">FORM_ENDPOINT</span> in <span class="mono small">script.js</span> with your provider URL (e.g., Formspree, Getform, Basin, Netlify Forms).</p>
+      <form id="partner-form" class="border" method="POST" action="#">
+        <fieldset style="border:0; padding:16px">
+          <legend class="mono small">How can you help?</legend>
+          <label><input type="radio" name="help_type" value="Funding" required> Funding</label><br/>
+          <label><input type="radio" name="help_type" value="Adoption"> Procurement</label><br/>
+          <label><input type="radio" name="help_type" value="Distribution"> Commercial Distribution / Adoption</label><br/>
+          <label><input type="radio" name="help_type" value="Adoption"> Promotion / Advocacy</label><br/>
+          <label><input type="radio" name="help_type" value="Adoption"> Something else?</label>
+        </fieldset>
+        <div style="padding:16px; border-top:1px solid #000">
+          <label>Full name<br/><input class="input border" type="text" name="name" required></label><br/><br/>
+          <label>Work email<br/><input class="input border" type="email" name="email" required></label><br/><br/>
+          <label>Organisation<br/><input class="input border" type="text" name="org" required></label><br/><br/>
+          <label>Region / Jurisdiction<br/><input class="input border" type="text" name="region"></label><br/><br/>
+          <label>Message<br/><textarea class="input border" name="message" rows="6" placeholder="Briefly describe your role, timelines, and any procurement pathway."></textarea></label>
+        </div>
+        <div style="padding:16px; border-top:1px solid #000; display:flex; gap:12px">
+          <button class="btn" type="submit">Send</button>
+          <a class="btn btn-ghost" href="index.html">Back</a>
+        </div>
+      </form>
+      <p class="small mono" style="margin-top:8px">We only use this information to contact you regarding your enquiry.</p>
+    </div>
+  </main>
+  <footer class="site-footer border">
+    <div class="container footer-grid">
+      <div>OpenFloodGauge · © 2025 · AGPL‑3.0 code · ODbL‑1.0 data</div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

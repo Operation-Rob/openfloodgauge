@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Posting Guide — SensorThings</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header border">
+    <div class="container header-grid"><div class="brand"><a class="brand-link" href="../index.html">OpenFloodGauge</a></div></div>
+  </header>
+  <main class="section border">
+    <div class="container" style="max-width:900px">
+      <h1 class="h1">Posting Guide (OGC SensorThings)</h1>
+      <p>This is a working draft. It outlines minimal fields and entity relationships. Replace examples with your authoritative schema when ready.</p>
+      <h2 class="h2">Entities</h2>
+      <ul class="bullets">
+        <li><strong>Thing</strong> — physical gauge with metadata (name, description, properties).</li>
+        <li><strong>Location</strong> — coordinates and geometry reference.</li>
+        <li><strong>Sensor</strong> — device model/specs; sampling period.</li>
+        <li><strong>ObservedProperty</strong> — water level (units, description).</li>
+        <li><strong>Datastream</strong> — links Sensor + ObservedProperty + Thing.</li>
+        <li><strong>Observation</strong> — value, time, resultQuality.</li>
+      </ul>
+      <h2 class="h2">Minimal Observation JSON (example)</h2>
+      <pre class="frame mono small">{
+  "phenomenonTime": "2025-01-01T12:00:00Z",
+  "result": 1.234,
+  "resultQuality": {"calibrated": true},
+  "Datastream": {"@iot.id": 123}
+}</pre>
+      <p class="small mono">Endpoints and IDs are examples; replace with your FROST instance and identifiers.</p>
+    </div>
+  </main>
+  <footer class="site-footer border">
+    <div class="container footer-grid"><div>OpenFloodGauge · © 2025 · AGPL‑3.0 code · ODbL‑1.0 data</div></div>
+  </footer>
+</body>
+</html>
