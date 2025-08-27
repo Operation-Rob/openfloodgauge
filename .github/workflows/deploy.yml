@@ -40,26 +40,19 @@ jobs:
 
       - name: Activate release & reload nginx
         env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT || 22 }}
+            SSH_USER: ${{ secrets.SSH_USER }}
+            SSH_HOST: ${{ secrets.SSH_HOST }}
+            SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
         run: |
-          ssh -i ~/.ssh/id_ed25519 -p ${SSH_PORT} ${SSH_USER}@${SSH_HOST} <<'EOF'
-          set -euo pipefail
-          DEPLOY_PATH="/var/www/openfloodgauge"
-          RELEASE="${DEPLOY_PATH}/releases/${GITHUB_SHA}"
-
-          # perms
-          chown -R www-data:www-data "${RELEASE}"
-          find "${RELEASE}" -type d -exec chmod 755 {} \;
-          find "${RELEASE}" -type f -exec chmod 644 {} \;
-
-          # atomic activate
-          ln -sfn "${RELEASE}" "${DEPLOY_PATH}/current"
-
-          # tidy: keep last 5 releases
-          ls -dt "${DEPLOY_PATH}/releases"/* | tail -n +6 | xargs -r rm -rf --
-
-          nginx -t
-          systemctl reload nginx
-          EOF
+            ssh -i ~/.ssh/id_ed25519 -p "${SSH_PORT}" "${SSH_USER}@${SSH_HOST}" <<EOF
+            set -euo pipefail
+            DEPLOY_PATH="/var/www/openfloodgauge"
+            RELEASE="${DEPLOY_PATH}/releases/${GITHUB_SHA}"
+            chown -R www-data:www-data "${RELEASE}"
+            find "${RELEASE}" -type d -exec chmod 755 {} \;
+            find "${RELEASE}" -type f -exec chmod 644 {} \;
+            ln -sfn "${RELEASE}" "${DEPLOY_PATH}/current"
+            ls -dt "${DEPLOY_PATH}/releases"/* | tail -n +6 | xargs -r rm -rf --
+            nginx -t
+            systemctl reload nginx
+            EOF
