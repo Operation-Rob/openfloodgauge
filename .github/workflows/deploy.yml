@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DEPLOY_PATH: /var/www/openfloodgauge
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -22,37 +23,62 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          # Strict host key checking with prefetch
-          ssh-keyscan -p "${{ secrets.SSH_PORT || 22 }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+          # Cache host key
+          ssh-keyscan -p "${{ secrets.SSH_PORT || '22' }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Upload release (rsync)
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_PORT: ${{ secrets.SSH_PORT || 22 }}
+          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
         run: |
-          RELEASE="${DEPLOY_PATH}/releases/${GITHUB_SHA}"
+          set -euo pipefail
+          SHA="${GITHUB_SHA}"
+          RELEASE="${DEPLOY_PATH}/releases/${SHA}"
+          # Ensure releases root exists
+          ssh -i ~/.ssh/id_ed25519 -p "${SSH_PORT}" -o StrictHostKeyChecking=accept-new \
+            "${SSH_USER}@${SSH_HOST}" "mkdir -p '${DEPLOY_PATH}/releases'"
+
           rsync -az --delete \
             --exclude ".git" \
             --exclude ".github" \
-            -e "ssh -i ~/.ssh/id_ed25519 -p ${SSH_PORT}" \
+            -e "ssh -i ~/.ssh/id_ed25519 -p ${SSH_PORT} -o StrictHostKeyChecking=accept-new" \
             ./ "${SSH_USER}@${SSH_HOST}:${RELEASE}/"
 
       - name: Activate release & reload nginx
         env:
-            SSH_USER: ${{ secrets.SSH_USER }}
-            SSH_HOST: ${{ secrets.SSH_HOST }}
-            SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_PORT: ${{ secrets.SSH_PORT || '22' }}
         run: |
-            ssh -i ~/.ssh/id_ed25519 -p "${SSH_PORT}" "${SSH_USER}@${SSH_HOST}" <<EOF
-            set -euo pipefail
-            DEPLOY_PATH="/var/www/openfloodgauge"
-            RELEASE="${DEPLOY_PATH}/releases/${GITHUB_SHA}"
-            chown -R www-data:www-data "${RELEASE}"
-            find "${RELEASE}" -type d -exec chmod 755 {} \;
-            find "${RELEASE}" -type f -exec chmod 644 {} \;
-            ln -sfn "${RELEASE}" "${DEPLOY_PATH}/current"
-            ls -dt "${DEPLOY_PATH}/releases"/* | tail -n +6 | xargs -r rm -rf --
-            nginx -t
-            systemctl reload nginx
-            EOF
+          set -euo pipefail
+          SHA="${GITHUB_SHA}"
+          ssh -i ~/.ssh/id_ed25519 -p "${SSH_PORT}" -o StrictHostKeyChecking=accept-new \
+            "${SSH_USER}@${SSH_HOST}" "SHA='${SHA}' DEPLOY_PATH='${DEPLOY_PATH}' bash -s" <<'EOF'
+          set -euo pipefail
+          : "${SHA:?SHA is missing}"
+          : "${DEPLOY_PATH:?DEPLOY_PATH is missing}"
+
+          RELEASE="${DEPLOY_PATH}/releases/${SHA}"
+
+          if [ ! -d "${RELEASE}" ]; then
+            echo "ERROR: Release directory not found: ${RELEASE}"
+            echo "Existing releases:"
+            ls -la "${DEPLOY_PATH}/releases" || true
+            exit 1
+          fi
+
+          # Permissions (adjust if you later deploy with a non-root user)
+          chown -R www-data:www-data "${RELEASE}"
+          find "${RELEASE}" -type d -exec chmod 755 {} \;
+          find "${RELEASE}" -type f -exec chmod 644 {} \;
+
+          # Atomic activate
+          ln -sfn "${RELEASE}" "${DEPLOY_PATH}/current"
+
+          # Keep last 5 releases
+          ls -dt "${DEPLOY_PATH}/releases"/* | tail -n +6 | xargs -r rm -rf --
+
+          nginx -t
+          systemctl reload nginx
+EOF
